@@ -6,3 +6,8 @@ Reading values from one wire temperature sensor (ds18b20) every 10 min and sendi
 Brown wire and serial converter is only needed for programming.
  
 ![Schematics](https://github.com/Torbacka/temp-sensor/blob/master/diagram.png)
+
+### Requirements
+
+1. [OneWire.h](https://github.com/PaulStoffregen/OneWire)
+2. [DallasTemperature.h](https://github.com/milesburton/Arduino-Temperature-Control-Library)
