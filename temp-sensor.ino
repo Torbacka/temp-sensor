@@ -11,11 +11,12 @@
 #include <WiFiClient.h>
 
 #define ONE_WIRE_BUS 14
+ESP8266WiFiMulti WiFiMulti;
 
 OneWire oneWire(ONE_WIRE_BUS);
 DallasTemperature sensors(&oneWire);
-const char *ssid = USERNAME;
-const char *password = WIFI_PASSWORD;
+const char *ssid = "9B4492F9EE";
+const char *password = "Telia-6A2A55";
 
 void setup(void) {
     Serial.begin(115200);
@@ -40,7 +41,7 @@ void setup(void) {
 void loop(void) { 
     // Wait for WiFi connection
     if ((WiFiMulti.run() == WL_CONNECTED)) {
-        sendPost("http://192.168.1.154:8090", getTemperatur());
+        sendPost("http://192.168.1.242:8090/temperature", getTemperatur());
     } else {
         Serial.printf("[HTTP] Unable to connect\n");
     }
@@ -51,7 +52,7 @@ void loop(void) {
 
 // TODO: Deep sleep to save battery
 void sleep(long time) {
-  deplay(time);
+  delay(time);
 }
 
 // TODO: Should move it out to my own HTTP library for future use
@@ -63,7 +64,7 @@ void sendPost(String url, String data) {
     // Start of request
     if (http.begin(client, url)) {
         Serial.print("[HTTP] GET...\n");
-        http.addHeader("Content-Type", "application/json");
+        http.addHeader("Content-Type", "application/json;charset=UTF-8");
         int httpCode = http.POST(data);
   
         // httpCode will be negative on error
@@ -76,10 +77,10 @@ void sendPost(String url, String data) {
               String payload = http.getString();
               Serial.println(payload);
             }
+        }else {
+            Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
         }
-    } else {
-        Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
-    }
+    } 
     http.end();
 }
 
