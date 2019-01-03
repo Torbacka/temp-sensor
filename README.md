@@ -5,11 +5,11 @@ Reading values from one wire temperature sensor (ds18b20) every 10 min and sendi
 ### Schematics
 Brown wire should be 10k resistors.
  
-![Schematics](https://github.com/Torbacka/temp-sensor/blob/master/diagram.png)
+![Schematics](https://github.com/Torbacka/temp-sensor/blob/master/diagram2.png)
 
 Running configuration:
 
-![Schematics](https://github.com/Torbacka/temp-sensor/blob/master/diagram2.png)
+![Schematics](https://github.com/Torbacka/temp-sensor/blob/master/diagram.png)
 
 
 ### Requirements
